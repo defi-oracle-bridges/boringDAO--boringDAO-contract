@@ -18,3 +18,8 @@ The first account corresponding to the mnemonic phrase should have testnet eth
     npx truffle compile 
     npx truffle deploy --network kovan 
 ```
+
+
+The following items should be compiled seperatly
+Boring.sol
+BoringDAOVotingShare.sol
