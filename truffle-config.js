@@ -19,7 +19,7 @@
  */
 
 const HDWalletProvider = require('@truffle/hdwallet-provider');
-const {mnemonic, projectId, etherscanKey, cmcKey} = require("./secret.json");
+const {mnemonic, projectId, etherscanKey} = require("./secret.json");
 // const infuraKey = "fj4jll3k.....";
 //
 // const fs = require('fs');
@@ -51,11 +51,11 @@ module.exports = {
     // tab if you use this network and you must also set the `host`, `port` and `network_id`
     // options below to some value.
     //
-    development: {
-     host: "127.0.0.1",     // Localhost (default: none)
-     port: 7545,            // Standard Ethereum port (default: none)
-     network_id: "*",       // Any network (default: none)
-    },
+    // development: {
+    //  host: "127.0.0.1",     // Localhost (default: none)
+    //  port: 7545,            // Standard Ethereum port (default: none)
+    //  network_id: "*",       // Any network (default: none)
+    // },
     // Another network with more advanced options...
     // advanced: {
     // port: 8777,             // Custom port
@@ -67,26 +67,26 @@ module.exports = {
     // },
     // Useful for deploying to a public network.
     // NB: It's important to wrap the provider as a function.
-    ropsten: {
-      provider: () => new HDWalletProvider(mnemonic, `https://ropsten.infura.io/v3/${projectId}`),
-      network_id: 3,       // Ropsten's id
+    // ropsten: {
+    //   provider: () => new HDWalletProvider(mnemonic, `https://ropsten.infura.io/v3/${projectId}`),
+    //   network_id: 3,       // Ropsten's id
       // gas: 5500000,        // Ropsten has a lower block limit than mainnet
       // confirmations: 2,    // # of confs to wait between deployments. (default: 0)
       // timeoutBlocks: 200,  // # of blocks before a deployment times out  (minimum/default: 50)
-      skipDryRun: true     // Skip dry run before migrations? (default: false for public nets )
-    },
-    kovan: {
-      provider: () => new HDWalletProvider(mnemonic, `https://kovan.infura.io/v3/${projectId}`),
-      network_id: 42,       // Ropsten's id
+    //   skipDryRun: true     // Skip dry run before migrations? (default: false for public nets )
+    // },
+    // kovan: {
+    //   provider: () => new HDWalletProvider(mnemonic, `https://kovan.infura.io/v3/${projectId}`),
+    //   network_id: 42,       // Ropsten's id
       // gas: 5500000,        // Ropsten has a lower block limit than mainnet
       // gasPrice: 38000000000,
       // confirmations: 2,    // # of confs to wait between deployments. (default: 0)
       // timeoutBlocks: 200,  // # of blocks before a deployment times out  (minimum/default: 50)
-      skipDryRun: true     // Skip dry run before migrations? (default: false for public nets )
-    },
-    rinkeby: {
+    //   skipDryRun: true     // Skip dry run before migrations? (default: false for public nets )
+    // },
+    goerli: {
       provider: () => new HDWalletProvider(mnemonic, `https://rinkeby.infura.io/v3/${projectId}`),
-      network_id: 4,       // Ropsten's id
+      network_id: 5,       // Ropsten's id
       // gas: 5500000,        // Ropsten has a lower block limit than mainnet
       gasPrice: 38000000000,
       // confirmations: 2,    // # of confs to wait between deployments. (default: 0)
@@ -108,6 +108,20 @@ module.exports = {
       timeoutBlocks: 200,
       skipDryRun: true
     },
+
+    // Defi Oracle Meta networks
+    defio_meta: {
+    provider: () => new HDWalletProvider(mnemonic, `https://rpc.public-0138.defi-oracle.io`),
+    network_id: 138,   // This network is yours, in the cloud.
+    production: true    // Treats this network as if it was a public net. (default: false)
+    },
+
+    defio_meta_testnet: {
+    provider: () => new HDWalletProvider(mnemonic, `https://rpc.public-2138.defi-oracle.io`),
+    network_id: 2138,   // This network is yours, in the cloud.
+    production: true    // Treats this network as if it was a public net. (default: false)
+    }
+
     // Useful for private networks
     // private: {
     // provider: () => new HDWalletProvider(mnemonic, `https://network.io`),
@@ -122,7 +136,7 @@ module.exports = {
     reporter: 'eth-gas-reporter',
     reporterOptions: {
       currency: 'USD',
-      coinmarketcap: cmcKey,
+      // coinmarketcap: cmcKey,
       // url: `https://kovan.infura.io/v3/${projectId}`
     }
   },
@@ -130,7 +144,7 @@ module.exports = {
   // Configure your compilers
   compilers: {
     solc: {
-      version: "0.6.12",    // Fetch exact version from solc-bin (default: truffle's version)
+      version: "0.7.0",    // Fetch exact version from solc-bin (default: truffle's version)
       // docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
       settings: {          // See the solidity docs for advice about optimization and evmVersion
        optimizer: {
@@ -139,6 +153,6 @@ module.exports = {
        },
       //  evmVersion: "byzantium"
       }
-    },
-  },
-};
+    }
+  }
+}
